@@ -8,6 +8,12 @@
     # Canal stable pour packages spécifiques
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
     
+    # Canal fixe pour Android Studio (version actuelle)
+    nixpkgs-android-studio.url = "github:NixOS/nixpkgs/5e2a59a5b1a82f89f2c7e598302a9cacebb72a67";
+    
+    # nixpkgs master pour OpenCode et derniers packages
+    nixpkgs-master.url = "github:NixOS/nixpkgs/master";
+    
     # Home Manager pour la gestion des configurations utilisateur
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -25,7 +31,7 @@
     
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, nixos-hardware, hyprland, ... }@inputs: {
+  outputs = { self, nixpkgs, nixpkgs-stable, nixpkgs-android-studio, nixpkgs-master, home-manager, nixos-hardware, hyprland, ... }@inputs: {
     nixosConfigurations = {
       # Remplacez "nixos" par le nom de votre machine si différent
       nixos = nixpkgs.lib.nixosSystem {
@@ -37,6 +43,17 @@
             nixpkgs.overlays = [
               (final: prev: {
                 stable = import nixpkgs-stable {
+                  system = prev.system;
+                  config.allowUnfree = true;
+                };
+                
+                android-studio-channel = import nixpkgs-android-studio {
+                  system = prev.system;
+                  config.allowUnfree = true;
+                  config.android_sdk.accept_license = true;
+                };
+                
+                master = import nixpkgs-master {
                   system = prev.system;
                   config.allowUnfree = true;
                 };

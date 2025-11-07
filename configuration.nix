@@ -148,6 +148,8 @@
       "input"         # Périphériques d'entrée
       "storage"       # Stockage
       "docker"        # Accès Docker
+      "libvirtd"      # Accès libvirt pour VMs
+      "kvm"           # Accès KVM pour virtualisation matérielle
     ];
     shell = pkgs.zsh; # Shell par défaut
   };
@@ -211,6 +213,48 @@
   # SSH pour l'accès distant
   services.openssh.enable = true;
   
+  # === CONFIGURATION SAMBA ===
+  # Samba pour le partage de fichiers
+  services.samba = {
+    enable = true;
+    securityType = "user";
+    openFirewall = true;
+    settings = {
+      global = {
+        "workgroup" = "WORKGROUP";
+        "server string" = "nixos-SUPERNOVA";
+        "netbios name" = "nixos-SUPERNOVA";
+        "security" = "user";
+        "hosts allow" = "192.168.122. 127.0.0.1 localhost";
+        "hosts deny" = "0.0.0.0/0";
+        "guest account" = "nobody";
+        "map to guest" = "bad user";
+      };
+      
+      "malware-shared" = {
+        "path" = "/home/lmandrelli/DEV/Malware/shared";
+        "browseable" = "yes";
+        "read only" = "no";
+        "guest ok" = "yes";
+        "create mask" = "0755";
+        "directory mask" = "0755";
+        "force user" = "lmandrelli";
+        "force group" = "users";
+        "acl allow execute always" = "yes";
+        "nt acl support" = "yes";
+        "map acl inherit" = "yes";
+        "store dos attributes" = "yes";
+        "vfs objects" = "acl_xattr";
+      };
+    };
+  };
+
+  # Service de découverte pour les hôtes Windows
+  services.samba-wsdd = {
+    enable = true;
+    openFirewall = true;
+  };
+  
   # Open WebUI service
   services.open-webui = {
     enable = true;
@@ -218,6 +262,33 @@
     port = 8080;
     environment = {
       WEBUI_AUTH = "False";
+    };
+  };
+  
+  # === CONFIGURATION KVM / LIBVIRT ===
+  virtualisation.libvirtd = {
+    enable = true;
+    qemu = {
+      package = pkgs.qemu_kvm;
+      swtpm.enable = true;
+      vhostUserPackages = with pkgs; [ virtiofsd ];
+    };
+  };
+  
+  programs.virt-manager.enable = true;
+  virtualisation.spiceUSBRedirection.enable = true;
+  
+  # Autostart libvirt default network
+  systemd.services.libvirt-default-network = {
+    description = "Start libvirt default network";
+    after = ["libvirtd.service"];
+    wantedBy = ["multi-user.target"];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+      ExecStart = "${pkgs.libvirt}/bin/virsh net-start default";
+      ExecStop = "${pkgs.libvirt}/bin/virsh net-destroy default";
+      User = "root";
     };
   };
   

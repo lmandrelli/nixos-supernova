@@ -52,7 +52,7 @@
     # Zed - éditeur moderne écrit en Rust
     zed-editor
 
-    opencode
+    pkgs.master.opencode
     lmstudio
     gemini-cli
     
@@ -170,7 +170,7 @@
       collection-latexextra
     ]))
 
-    android-studio-full
+    pkgs.android-studio-channel.android-studio-full
     android-tools
   ];
 
