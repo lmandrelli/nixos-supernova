@@ -231,8 +231,8 @@
         "map to guest" = "bad user";
       };
       
-      "malware-shared" = {
-        "path" = "/home/lmandrelli/DEV/Malware/shared";
+      "windows-shared" = {
+        "path" = "/home/lmandrelli/DEV/TN-MRI/shared";
         "browseable" = "yes";
         "read only" = "no";
         "guest ok" = "yes";
