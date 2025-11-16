@@ -95,8 +95,8 @@
     # GIMP - édition d'images bitmap
     gimp
 
-    # Cura - logiciel de tranchage pour impression 3D
-    cura
+    # Cura - logiciel de tranchage pour impression 3D (temporarily disabled due to broken dependencies)
+    cura-appimage
     
     # === SÉCURITÉ ===
     # Bitwarden - gestionnaire de mots de passe
