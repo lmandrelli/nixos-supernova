@@ -53,6 +53,7 @@
     zed-editor
 
     pkgs.master.opencode
+    claude-code
     lmstudio
     gemini-cli
     
