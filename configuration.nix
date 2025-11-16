@@ -256,14 +256,15 @@
   };
   
   # Open WebUI service
-  services.open-webui = {
-    enable = true;
-    host = "127.0.0.1";
-    port = 8080;
-    environment = {
-      WEBUI_AUTH = "False";
-    };
-  };
+  # Open WebUI service - temporarily disabled due to langchain build issues
+  # services.open-webui = {
+  #   enable = true;
+  #   host = "127.0.0.1";
+  #   port = 8080;
+  #   environment = {
+  #     WEBUI_AUTH = "False";
+  #   };
+  # };
   
   # === CONFIGURATION KVM / LIBVIRT ===
   virtualisation.libvirtd = {
