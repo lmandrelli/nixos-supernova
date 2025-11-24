@@ -46,7 +46,7 @@
     uv # Gestionnaire de paquets Python moderne
 
     # Tamarin Prover
-    tamarin-prover
+    pkgs.tamarin.tamarin-prover
     
     # === ÉDITEURS ET IDE ===
     # Visual Studio Code - éditeur populaire avec extensions

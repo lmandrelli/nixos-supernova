@@ -14,6 +14,11 @@
     # nixpkgs master pour OpenCode et derniers packages
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     
+    # Specific nixpkgs commit for tamarin-prover
+    nixpkgs-tamarin = {
+      url = "github:NixOS/nixpkgs/a421ac6595024edcfbb1ef950a3712b89161c359";
+    };
+    
     # Home Manager pour la gestion des configurations utilisateur
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -31,7 +36,7 @@
     
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, nixpkgs-android-studio, nixpkgs-master, home-manager, nixos-hardware, hyprland, ... }@inputs: {
+  outputs = { self, nixpkgs, nixpkgs-stable, nixpkgs-android-studio, nixpkgs-master, nixpkgs-tamarin, home-manager, nixos-hardware, hyprland, ... }@inputs: {
     nixosConfigurations = {
       # Remplacez "nixos" par le nom de votre machine si différent
       nixos = nixpkgs.lib.nixosSystem {
@@ -54,6 +59,11 @@
                 };
                 
                 master = import nixpkgs-master {
+                  system = prev.system;
+                  config.allowUnfree = true;
+                };
+                
+                tamarin = import nixpkgs-tamarin {
                   system = prev.system;
                   config.allowUnfree = true;
                 };

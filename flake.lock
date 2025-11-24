@@ -167,11 +167,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1763912895,
-        "narHash": "sha256-tTdCVeROhYTwV510tygS5AMutJGz5imM++P4+cXAy2w=",
+        "lastModified": 1764015075,
+        "narHash": "sha256-PLBlz4G6cMSXjx5aTCxs5y/Sre7Lnh/S3WVjNk6YEF0=",
         "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "2b0fd417d32278159d0ca1d23fb997588c37995b",
+        "rev": "3d7ea9c02face0d6c5d9963030a06705268979ba",
         "type": "github"
       },
       "original": {
@@ -432,11 +432,11 @@
     },
     "nixpkgs-master": {
       "locked": {
-        "lastModified": 1764013934,
-        "narHash": "sha256-3WTTdABMNHUGMATg+8RXxKm1Z3Ek63SaoUhq3RxqZGY=",
+        "lastModified": 1764016266,
+        "narHash": "sha256-QH3zExVzt2q7dQVOlFGkn7vzhtHIcJDV76hkOO6mI3Y=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "dbf521b6d626e3f0cec4084c707fd87b6e3a342f",
+        "rev": "848c8fb179bbc1efed5dfcaa45fabd22de08fa85",
         "type": "github"
       },
       "original": {
@@ -459,6 +459,22 @@
         "owner": "NixOS",
         "ref": "nixos-25.05",
         "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs-tamarin": {
+      "locked": {
+        "lastModified": 1752446735,
+        "narHash": "sha256-Nz2vtUEaRB/UjvPfuhHpez060P/4mvGpXW4JCDIboA4=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "a421ac6595024edcfbb1ef950a3712b89161c359",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "a421ac6595024edcfbb1ef950a3712b89161c359",
         "type": "github"
       }
     },
@@ -493,7 +509,8 @@
         "nixpkgs": "nixpkgs",
         "nixpkgs-android-studio": "nixpkgs-android-studio",
         "nixpkgs-master": "nixpkgs-master",
-        "nixpkgs-stable": "nixpkgs-stable"
+        "nixpkgs-stable": "nixpkgs-stable",
+        "nixpkgs-tamarin": "nixpkgs-tamarin"
       }
     },
     "systems": {
