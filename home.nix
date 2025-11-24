@@ -44,6 +44,9 @@
     # Python avec support des environnements virtuels
     python3 python3Packages.virtualenv python3Packages.pip
     uv # Gestionnaire de paquets Python moderne
+
+    # Tamarin Prover
+    tamarin-prover
     
     # === ÉDITEURS ET IDE ===
     # Visual Studio Code - éditeur populaire avec extensions
